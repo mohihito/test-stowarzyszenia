@@ -56,10 +56,8 @@
       font-weight: bold;
       transition: background 0.2s;
     }
-    .btn-main:hover, .btn-main:focus {
+    .btn-main:hover {
       background: rgba(183,28,28,0.95);
-      outline: 2px solid #b71c1c;
-      outline-offset: 2px;
     }
     .hero-svg-bg {
       background: url('title.svg') center center/cover no-repeat;
@@ -73,117 +71,209 @@
         min-height: 280px;
       }
     }
-    /* Sticky Header */
+
+    /* Styl dla Sticky Header */
     header.sticky {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       z-index: 1000;
-      transition: all 0.3s cubic-bezier(.4,0,.2,1);
-      background: rgba(0,0,0,0.28);
-      backdrop-filter: blur(2px);
+      transition: all 0.3s ease;
     }
     header.sticky .max-w-7xl {
-      transition: all 0.3s cubic-bezier(.4,0,.2,1);
-    }
-    header.sticky.shrink {
-      padding: 0.25rem 0;
-      box-shadow: 0 2px 8px 0 rgba(0,0,0,0.14);
-    }
-    header.sticky.shrink .h-24 {
-      height: 2.75rem; /* mniejsze logo */
+      transition: all 0.3s ease;
     }
     header.sticky.shrink .py-4 {
-      padding-top: 0.25rem;
-      padding-bottom: 0.25rem;
+      padding-top: 0.5rem;
+      padding-bottom: 0.5rem;
+    }
+    header.sticky.shrink .h-16 {
+      height: 3rem;
+    }
+    header.sticky.shrink .h-24 {
+      height: 4rem;
+    }
+    header.sticky.shrink .text-base {
+      font-size: 0.875rem;
     }
     header.sticky.shrink .text-lg {
       font-size: 1rem;
     }
     header.sticky.shrink .px-6 {
-      padding-left: 0.75rem;
-      padding-right: 0.75rem;
-    }
-    /* Hamburger menu styl */
-    .mobile-nav {
-      display: none;
-    }
-    @media (max-width: 768px) {
-      .desktop-nav {
-        display: none;
-      }
-      .mobile-nav {
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-        background: rgba(0,0,0,0.92);
-        position: absolute;
-        top: 100%;
-        right: 0;
-        left: 0;
-        z-index: 999;
-        padding: 1.5rem 1rem;
-        border-radius: 0 0 1rem 1rem;
-        box-shadow: 0 4px 24px 0 rgba(0,0,0,0.16);
-      }
-      .mobile-nav a {
-        color: #fff;
-        font-size: 1.2rem;
-        font-weight: 600;
-      }
-      .mobile-nav a:hover {
-        color: #D32F2F;
-      }
-    }
-    /* Zapobiega zasłanianiu treści przez sticky header */
-    .header-spacer {
-      height: 6.5rem;
-    }
-    @media (max-width: 768px) {
-      .header-spacer {
-        height: 4.5rem;
-      }
+      padding-left: 1rem;
+      padding-right: 1rem;
     }
   </style>
 </head>
 <body class="flex flex-col min-h-screen">
 
-  <!-- Sticky Shrinking Header -->
-  <header class="w-full sticky shadow-md">
-    <div class="max-w-7xl mx-auto flex items-center justify-between px-4 py-4 relative">
+  <!-- Header & Navigation z Shrinking Sticky -->
+  <header class="w-full bg-overlay shadow-md sticky">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between px-4 py-4">
       <a href="index.html">
-        <img src="logo.svg" alt="Logo Stowarzyszenia Wolnej Myśli" class="h-24 w-auto rounded-lg shadow transition-all duration-300" />
+        <img src="logo.svg" alt="Logo Stowarzyszenia Wolnej Myśli" class="logo h-16 md:h-24 w-auto rounded-lg shadow transition-all duration-300" />
       </a>
-      <!-- Desktop Navigation -->
-      <nav class="desktop-nav flex gap-8 text-lg font-semibold">
-        <a href="projekty.html" class="hover:text-red-700 transition text-hero">Projekty</a>
-        <a href="regulamin.html" class="hover:text-red-700 transition text-hero">Regulamin</a>
-        <a href="#kontakt" class="hover:text-red-700 transition text-hero">Kontakt</a>
-        <a href="#wesprzyj" class="ml-6 px-6 py-2 rounded-lg btn-main shadow">Wesprzyj nas</a>
-      </nav>
-      <!-- Hamburger Button -->
-      <button id="menu-btn" class="md:hidden flex items-center justify-center text-2xl text-white focus:outline-none ml-4" aria-label="Otwórz menu">
-        <i class="fa fa-bars"></i>
-      </button>
-      <!-- Mobile Navigation (hidden by default) -->
-      <nav id="mobile-nav" class="mobile-nav absolute left-0 right-0 top-full">
-        <a href="projekty.html">Projekty</a>
-        <a href="regulamin.html">Regulamin</a>
-        <a href="#kontakt">Kontakt</a>
-        <a href="#wesprzyj" class="px-4 py-2 rounded-lg btn-main text-center">Wesprzyj nas</a>
-      </nav>
+      <div class="flex flex-col md:flex-row items-center gap-4 mt-4 md:mt-0">
+        <nav class="flex flex-col md:flex-row gap-4 md:gap-8 text-base md:text-lg font-semibold">
+          <a href="projekty.html" class="hover:text-red-700 transition text-hero">Projekty</a>
+          <a href="regulamin.html" class="hover:text-red-700 transition text-hero">Regulamin</a>
+          <a href="#kontakt" class="hover:text-red-700 transition text-hero">Kontakt</a>
+        </nav>
+        <a href="#wesprzyj" class="mt-4 md:mt-0 md:ml-6 px-6 py-2 rounded-lg btn-main shadow">Wesprzyj nas</a>
+      </div>
     </div>
   </header>
-  <!-- Spacer to prevent content from being hidden under sticky header -->
-  <div class="header-spacer"></div>
 
-  <!-- Reszta kodu strony pozostaje bez zmian... -->
-  <!-- ... -->
-  <!-- Tutaj wklej resztę sekcji strony, jak w Twoim oryginalnym kodzie -->
+  <!-- Hero Section with SVG background and padding-top -->
+  <section class="w-full hero-svg-bg shadow-lg pt-32">
+    <div class="max-w-4xl mx-auto flex flex-col items-center text-center px-4 py-12">
+      <h1 class="text-4xl md:text-5xl font-extrabold mb-4 bg-overlay text-hero">Stowarzyszenie Wolnej Myśli</h1>
+      <p class="text-xl md:text-2xl font-light mb-6 bg-overlay text-hero">
+        Wspieramy niezależność intelektualną, racjonalny dyskurs i prawo do własnych przekonań. Dołącz do nas i budujmy razem społeczeństwo otwarte na różnorodność myśli!
+      </p>
+      <a href="#wesprzyj" class="mt-4 px-8 py-4 rounded-xl btn-main shadow-lg">Wesprzyj naszą misję</a>
+    </div>
+  </section>
 
+  <!-- Aktualności -->
+  <section id="aktualnosci" class="max-w-7xl mx-auto py-12 px-4">
+    <h2 class="text-3xl font-bold bg-overlay text-hero mb-8 text-center">Aktualności</h2>
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="card-bg p-6 flex flex-col upcoming">
+        <span class="text-red-700 font-bold mb-2">1 września 2025</span>
+        <h3 class="font-bold text-xl mb-2">I jawne zebranie zarządu oraz członków</h3>
+        <p class="flex-1 mb-4 text-red-700 font-semibold">Nadchodzące wydarzenie</p>
+        <p class="flex-1 mb-4 text-gray-700">Wybranie Zarządu, uchwalenie Logo, uchwalenie Regulaminu.</p>
+      </div>
+      <div class="card-bg p-6 flex flex-col">
+        <span class="text-red-600 font-bold mb-2">24 maja 2025</span>
+        <h3 class="font-bold text-xl mb-2">I niejawne zebranie zarządu oraz członków</h3>
+        <p class="flex-1 mb-4 text-gray-700">Zebraliśmy się omówić podstawy stowarzyszenia w Sushimani w Łomiankach</p>
+      </div>
+      <div class="card-bg p-6 flex flex-col">
+        <span class="text-red-600 font-bold mb-2">8 czerwca 2025</span>
+        <h3 class="font-bold text-xl mb-2">II niejawne zebranie zarządu oraz członków</h3>
+        <p class="flex-1 mb-4 text-gray-700">Zebraliśmy się omówić podstawy stowarzyszenia w Sushimani w Łomiankach.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projekty -->
+  <section id="projekty" class="w-full py-12">
+    <div class="max-w-7xl mx-auto px-4">
+      <h2 class="text-3xl font-bold bg-overlay text-hero mb-8 text-center">Nasze Projekty</h2>
+      <div class="grid md:grid-cols-2 gap-8">
+        <div class="card-bg p-6 flex flex-col md:flex-row items-center">
+          <img src="projekt1.jpg" alt="Projekt 1" class="w-full md:w-48 h-48 object-cover rounded-xl mb-4 md:mb-0 md:mr-8" />
+          <div>
+            <h3 class="font-bold text-2xl mb-2">Akademia Wolnej Myśli</h3>
+            <p class="text-gray-700">Cykl warsztatów i spotkań promujących krytyczne myślenie wśród młodzieży i dorosłych.</p>
+          </div>
+        </div>
+        <div class="card-bg p-6 flex flex-col md:flex-row items-center">
+          <img src="projekt2.jpg" alt="Projekt 2" class="w-full md:w-48 h-48 object-cover rounded-xl mb-4 md:mb-0 md:mr-8" />
+          <div>
+            <h3 class="font-bold text-2xl mb-2">Debaty Obywatelskie</h3>
+            <p class="text-gray-700">Organizujemy otwarte debaty na tematy społeczne, kulturowe i naukowe.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Wartości -->
+  <section id="wartosci" class="max-w-7xl mx-auto py-12 px-4">
+    <h2 class="text-3xl font-bold bg-overlay text-hero mb-8 text-center">Nasze Wartości</h2>
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="card-bg p-6">
+        <h3 class="font-bold text-xl mb-2">Wolność</h3>
+        <p class="text-gray-700">Wspieramy swobodę myślenia, wyrażania opinii i poszukiwania prawdy bez cenzury i dogmatów.</p>
+      </div>
+      <div class="card-bg p-6">
+        <h3 class="font-bold text-xl mb-2">Szacunek</h3>
+        <p class="text-gray-700">Dbamy o godność każdego człowieka, niezależnie od poglądów, pochodzenia czy wyznania.</p>
+      </div>
+      <div class="card-bg p-6">
+        <h3 class="font-bold text-xl mb-2">Solidarność</h3>
+        <p class="text-gray-700">Wspieramy się nawzajem i działamy razem na rzecz lepszego, bardziej otwartego społeczeństwa.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Zarząd -->
+  <section id="zarzad" class="w-full py-12">
+    <div class="max-w-5xl mx-auto px-4">
+      <h2 class="text-3xl font-bold bg-overlay text-hero mb-8 text-center">Zarząd</h2>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="card-bg p-6 flex flex-col items-center text-center">
+          <img src="zarzad1.jpg" alt="Prezes" class="w-32 h-32 object-cover rounded-full mb-4 shadow" />
+          <h3 class="font-bold text-xl mb-1">Jan Kowalski</h3>
+          <span class="text-red-700 font-semibold mb-2">Prezes</span>
+          <p class="text-gray-700">Inicjator i lider Stowarzyszenia, pasjonat wolnej myśli i edukacji obywatelskiej.</p>
+        </div>
+        <div class="card-bg p-6 flex flex-col items-center text-center">
+          <img src="zarzad2.jpg" alt="Wiceprezes" class="w-32 h-32 object-cover rounded-full mb-4 shadow" />
+          <h3 class="font-bold text-xl mb-1">Anna Nowak</h3>
+          <span class="text-red-700 font-semibold mb-2">Wiceprezes</span>
+          <p class="text-gray-700">Odpowiedzialna za projekty edukacyjne i współpracę z młodzieżą.</p>
+        </div>
+        <div class="card-bg p-6 flex flex-col items-center text-center">
+          <img src="zarzad3.jpg" alt="Sekretarz" class="w-32 h-32 object-cover rounded-full mb-4 shadow" />
+          <h3 class="font-bold text-xl mb-1">Piotr Zieliński</h3>
+          <span class="text-red-700 font-semibold mb-2">Sekretarz</span>
+          <p class="text-gray-700">Zajmuje się komunikacją i dokumentacją działań Stowarzyszenia.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Wesprzyj nas -->
+  <section id="wesprzyj" class="w-full py-12 border-t card-bg">
+    <div class="max-w-3xl mx-auto px-4 text-center">
+      <h2 class="text-3xl font-bold bg-overlay text-hero mb-6">Wesprzyj naszą działalność</h2>
+      <p class="mb-8 text-gray-700 text-lg">Twoje wsparcie pomaga nam realizować projekty edukacyjne, debaty i działania na rzecz wolności myśli. Dziękujemy!</p>
+      <a href="mailto:kontakt@wolnamysl.pl" class="btn-main py-4 px-10 rounded-lg text-lg shadow-lg inline-block">Wpłać darowiznę</a>
+    </div>
+  </section>
+
+  <!-- Kontakt -->
+  <section id="kontakt" class="w-full py-12 border-t">
+    <div class="max-w-3xl mx-auto px-4">
+      <h2 class="text-3xl font-bold bg-overlay text-hero mb-8 text-center">Kontakt</h2>
+      <div class="contact-bg shadow p-8 flex flex-col md:flex-row items-center md:items-start gap-8">
+        <div class="flex-1 w-full">
+          <form class="flex flex-col gap-4">
+            <input type="email" placeholder="Twój adres e-mail" class="border rounded-lg px-4 py-2 w-full" required>
+            <input type="text" placeholder="Temat wiadomości" class="border rounded-lg px-4 py-2 w-full" required>
+            <textarea placeholder="Treść wiadomości" class="border rounded-lg px-4 py-2 w-full" rows="4" required></textarea>
+            <button type="submit" class="btn-main py-2 px-6 rounded-lg">Wyślij</button>
+          </form>
+        </div>
+        <div class="flex-1">
+          <p class="mb-2"><b>Stowarzyszenie Wolnej Myśli</b></p>
+          <p class="mb-2"><i class="fa-solid fa-envelope mr-2 text-red-600"></i> kontakt@wolnamysl.pl</p>
+          <p class="mb-2"><i class="fa-solid fa-phone mr-2 text-red-600"></i> +48 123 456 789</p>
+          <p class="mb-2"><i class="fa-brands fa-facebook mr-2 text-red-600"></i> <a href="#" class="underline hover:text-red-700">facebook.com/wolnamysl</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="w-full bg-overlay border-t mt-auto">
+    <div class="max-w-7xl mx-auto py-6 px-4 flex flex-col md:flex-row items-center justify-between text-gray-200 text-sm">
+      <div>© 2025 Stowarzyszenie Wolnej Myśli. Wszelkie prawa zastrzeżone.</div>
+      <div class="mt-2 md:mt-0">
+        <a href="projekty.html" class="hover:text-red-700 mx-2 text-hero">Projekty</a>
+        <a href="regulamin.html" class="hover:text-red-700 mx-2 text-hero">Regulamin</a>
+        <a href="#kontakt" class="hover:text-red-700 mx-2 text-hero">Kontakt</a>
+        <a href="#wesprzyj" class="hover:text-red-700 mx-2 text-hero">Wesprzyj nas</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Skrypt JavaScript dla Shrinking Sticky Header -->
   <script>
-    // Shrinking sticky header
     window.addEventListener('scroll', function() {
       const header = document.querySelector('header');
       if (window.scrollY > 50) {
@@ -192,37 +282,7 @@
         header.classList.remove('shrink');
       }
     });
-
-    // Hamburger menu toggle
-    const menuBtn = document.getElementById('menu-btn');
-    const mobileNav = document.getElementById('mobile-nav');
-    let menuOpen = false;
-    menuBtn.addEventListener('click', function() {
-      menuOpen = !menuOpen;
-      if (menuOpen) {
-        mobileNav.style.display = 'flex';
-        menuBtn.innerHTML = '<i class="fa fa-times"></i>';
-      } else {
-        mobileNav.style.display = 'none';
-        menuBtn.innerHTML = '<i class="fa fa-bars"></i>';
-      }
-    });
-    // Zamknij menu po kliknięciu linku
-    mobileNav.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        mobileNav.style.display = 'none';
-        menuBtn.innerHTML = '<i class="fa fa-bars"></i>';
-        menuOpen = false;
-      });
-    });
-    // Ukryj menu przy zmianie rozmiaru okna
-    window.addEventListener('resize', function() {
-      if(window.innerWidth > 768) {
-        mobileNav.style.display = 'none';
-        menuBtn.innerHTML = '<i class="fa fa-bars"></i>';
-        menuOpen = false;
-      }
-    });
   </script>
+
 </body>
 </html>
